@@ -10,7 +10,7 @@ import {
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: 'https://localhost:44334/api/v1',
+  baseURL: 'http://192.168.0.105:82/api/v1',
   timeout: 15000
 })
 

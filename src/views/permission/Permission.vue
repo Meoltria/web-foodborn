@@ -10,6 +10,7 @@
       父级功能:
       <el-cascader :options="selects"
                    :props="defaultProps"
+                   size="medium"
                    v-model="selected"
                    @change="handleChange"
                    change-on-select>

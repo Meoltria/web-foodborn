@@ -12,10 +12,12 @@
       上级部门:
       <el-cascader :options="selects"
                    :props="defaultProps"
+                   size="medium"
                    v-model="selected"
                    @change="handleChange"
                    change-on-select></el-cascader>
       <el-input v-model="listQuery.name"
+                size="medium"
                 placeholder="部门名称"
                 class="handle-input"></el-input>
       <el-button type="primary"

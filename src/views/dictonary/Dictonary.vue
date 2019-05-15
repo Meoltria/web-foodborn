@@ -10,9 +10,11 @@
     </div>
     <div class="handle-box">
       <el-input v-model="listQuery.typeCode"
+                size="medium"
                 placeholder="字典类别代码"
                 class="handle-input"></el-input>
       <el-input v-model="listQuery.typeName"
+                size="medium"
                 placeholder="字典类别名称"
                 class="handle-input"></el-input>
       <el-button type="primary"

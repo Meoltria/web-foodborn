@@ -12,10 +12,12 @@
       所属部门:
       <el-cascader :options="orgSelects"
                    :props="defaultProps"
+                   size="medium"
                    v-model="orgSelected"
                    @change="handleChange"
                    change-on-select></el-cascader>
       <el-input v-model="listQuery.name"
+                size="medium"
                 placeholder="用户名称"
                 class="handle-input"></el-input>
       <el-button type="primary"

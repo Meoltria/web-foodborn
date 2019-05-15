@@ -1,4 +1,4 @@
-const TokenKey = 'Token'
+const TokenKey = 'WebFoodbornToken'
 
 export function getToken () {
   return localStorage.getItem(TokenKey)
