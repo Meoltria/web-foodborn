@@ -1,6 +1,6 @@
 import fetch from '@/utils/fetch'
 
-export function getOrgUsers(orgId, params) {
+export function getOrgUsers (orgId, params) {
   return fetch({
     url: `/Orgs/${orgId}/Users`,
     method: 'get',
@@ -8,21 +8,21 @@ export function getOrgUsers(orgId, params) {
   })
 }
 
-export function getOrgUsersByType(orgId, userTypeCode) {
+export function getOrgUsersByType (orgId, userTypeCode) {
   return fetch({
     url: `/Orgs/${orgId}/${userTypeCode}/Users`,
     method: 'get'
   })
 }
 
-export function getUser(id) {
+export function getUser (id) {
   return fetch({
     url: `/Users/${id}`,
     method: 'get'
   })
 }
 
-export function createUser(data) {
+export function createUser (data) {
   return fetch({
     url: '/Users',
     method: 'post',
@@ -30,7 +30,7 @@ export function createUser(data) {
   })
 }
 
-export function updateUser(data) {
+export function updateUser (data) {
   return fetch({
     url: `/Users/${data.id}`,
     method: 'put',
@@ -38,7 +38,7 @@ export function updateUser(data) {
   })
 }
 
-export function deleteUser(id) {
+export function deleteUser (id) {
   return fetch({
     url: `/Users/${id}`,
     method: 'delete'

@@ -1,6 +1,6 @@
 import fetch from '@/utils/fetch'
 
-export function getDictionaries(params) {
+export function getDictionaries (params) {
   return fetch({
     url: '/Dictionary',
     method: 'get',
@@ -8,21 +8,21 @@ export function getDictionaries(params) {
   })
 }
 
-export function getDictonary(id) {
+export function getDictonary (id) {
   return fetch({
     url: `/Dictionary/${id}`,
     method: 'get'
   })
 }
 
-export function getDictonaryByTypeAndCode(typeCode, code) {
+export function getDictonaryByTypeAndCode (typeCode, code) {
   return fetch({
     url: `/Dictionary/${typeCode}/${code}/Dictionary`,
     method: 'get'
   })
 }
 
-export function getDictonarySelect(typeCode) {
+export function getDictonarySelect (typeCode) {
   return fetch({
     url: '/Dictionary/WithSelect',
     method: 'get',
@@ -32,7 +32,7 @@ export function getDictonarySelect(typeCode) {
   })
 }
 
-export function createDictonary(data) {
+export function createDictonary (data) {
   return fetch({
     url: '/Dictionary',
     method: 'post',
@@ -40,7 +40,7 @@ export function createDictonary(data) {
   })
 }
 
-export function updateDictonary(data) {
+export function updateDictonary (data) {
   return fetch({
     url: `/Dictionary/${data.id}`,
     method: 'put',
@@ -48,7 +48,7 @@ export function updateDictonary(data) {
   })
 }
 
-export function deleteDictonary(id) {
+export function deleteDictonary (id) {
   return fetch({
     url: `/Dictionary/${id}`,
     method: 'delete'

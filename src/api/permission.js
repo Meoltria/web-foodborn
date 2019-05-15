@@ -1,20 +1,20 @@
 import fetch from '@/utils/fetch'
 
-export function getPermissionWithMenu(roleId, permId) {
+export function getPermissionWithMenu (roleId, permId) {
   return fetch({
     url: `/Roles/${roleId}/ParentPerm/${permId}/WithMenu/Permissions`,
     method: 'get'
   })
 }
 
-export function getPermissionTree(id) {
+export function getPermissionTree (id) {
   return fetch({
     url: `/Permissions/${id}/WithTree/Permissions`,
     method: 'get'
   })
 }
 
-export function getPermissions(id, params) {
+export function getPermissions (id, params) {
   return fetch({
     url: `/Permissions/${id}/Permissions`,
     method: 'get',
@@ -22,14 +22,14 @@ export function getPermissions(id, params) {
   })
 }
 
-export function getPermission(id) {
+export function getPermission (id) {
   return fetch({
     url: `/Permissions/${id}`,
     method: 'get'
   })
 }
 
-export function createPermission(data) {
+export function createPermission (data) {
   return fetch({
     url: '/Permissions',
     method: 'post',
@@ -37,7 +37,7 @@ export function createPermission(data) {
   })
 }
 
-export function updatePermission(data) {
+export function updatePermission (data) {
   return fetch({
     url: `/Permissions/${data.id}`,
     method: 'put',
@@ -45,14 +45,14 @@ export function updatePermission(data) {
   })
 }
 
-export function deletePermission(id) {
+export function deletePermission (id) {
   return fetch({
     url: `/Permissions/${id}`,
     method: 'delete'
   })
 }
 
-export function setRolePermissions(data) {
+export function setRolePermissions (data) {
   return fetch({
     url: `/Roles/${data.roleId}/Permissions`,
     method: 'put',
@@ -60,7 +60,7 @@ export function setRolePermissions(data) {
   })
 }
 
-export function getRolePermissions(id) {
+export function getRolePermissions (id) {
   return fetch({
     url: `/Roles/${id}/Permissions`,
     method: 'get'

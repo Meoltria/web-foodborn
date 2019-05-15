@@ -279,10 +279,10 @@ export default {
       })
     },
     getList () {
-      this.listLoading = true;
-      var orgId = this.orgSelected[this.orgSelected.length - 1];
+      this.listLoading = true
+      var orgId = this.orgSelected[this.orgSelected.length - 1]
       getOrgUsers(orgId, this.listQuery).then(response => {
-        this.list = response.data;
+        this.list = response.data
         this.total = parseInt(response.headers['x-totalcount'])
         this.listLoading = false
       })
@@ -326,18 +326,10 @@ export default {
     createTemp () {
       this.$refs.temp.validate(valid => {
         if (valid) {
-          this.temp.userTypeName = this.userTypeSelects.find(
-            item => item.code === this.temp.userTypeCode
-          ).name
-          this.temp.genderName = this.genderSelects.find(
-            item => item.code === this.temp.genderCode
-          ).name
-          this.temp.userRankName = this.userRankSelects.find(
-            item => item.code === this.temp.userRankCode
-          ).name
-          this.temp.organazitionId = this.tempOrgSelected[
-            this.tempOrgSelected.length - 1
-          ]
+          this.temp.userTypeName = this.userTypeSelects.find(item => item.code === this.temp.userTypeCode).name
+          this.temp.genderName = this.genderSelects.find(item => item.code === this.temp.genderCode).name
+          this.temp.userRankName = this.userRankSelects.find(item => item.code === this.temp.userRankCode).name
+          this.temp.organazitionId = this.tempOrgSelected[this.tempOrgSelected.length - 1]
           createUser(this.temp).then(response => {
             if (response.status === 201) {
               this.dialogFormVisible = false
@@ -349,7 +341,7 @@ export default {
               })
               this.getList()
             }
-          });
+          })
         } else {
           return false
         }
@@ -358,18 +350,10 @@ export default {
     updateTemp () {
       this.$refs.temp.validate(valid => {
         if (valid) {
-          this.temp.userTypeName = this.userTypeSelects.find(
-            item => item.code === this.temp.userTypeCode
-          ).name
-          this.temp.genderName = this.genderSelects.find(
-            item => item.code === this.temp.genderCode
-          ).name
-          this.temp.userRankName = this.userRankSelects.find(
-            item => item.code === this.temp.userRankCode
-          ).name
-          this.temp.organazitionId = this.tempOrgSelected[
-            this.tempOrgSelected.length - 1
-          ]
+          this.temp.userTypeName = this.userTypeSelects.find(item => item.code === this.temp.userTypeCode).name
+          this.temp.genderName = this.genderSelects.find(item => item.code === this.temp.genderCode).name
+          this.temp.userRankName = this.userRankSelects.find(item => item.code === this.temp.userRankCode).name
+          this.temp.organazitionId = this.tempOrgSelected[this.tempOrgSelected.length - 1]
           updateUser(this.temp).then(response => {
             if (response.status === 204) {
               this.dialogFormVisible = false

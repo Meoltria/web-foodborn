@@ -27,68 +27,68 @@ service.interceptors.request.use(config => {
 
 // response拦截器
 service.interceptors.response.use(response => {
-    return response
-  },
-  error => {
-    if (error.response) {
-      switch (error.response.status) {
-        case 401:
-          MessageBox({
-            title: '消息',
-            confirmButtonText: '确定',
-            message: '身份验证失败，请重新登录!',
-            type: 'error'
-          }).then(() => {
-            store.dispatch('LogOut').then(() => {
-              window.location.reload()
-            })
+  return response
+},
+error => {
+  if (error.response) {
+    switch (error.response.status) {
+      case 401:
+        MessageBox({
+          title: '消息',
+          confirmButtonText: '确定',
+          message: '身份验证失败，请重新登录!',
+          type: 'error'
+        }).then(() => {
+          store.dispatch('LogOut').then(() => {
+            window.location.reload()
           })
-          break
-        case 403:
-          Message({
-            showClose: true,
-            message: '你没有权限访问该资源!',
-            type: 'warning'
-          })
-          break
-        case 400:
-          Message({
-            showClose: true,
-            message: error.response.data.value.error,
-            type: 'error'
-          })
-          break
-        case 404:
-          Message({
-            showClose: true,
-            message: error.response.data.value.error,
-            type: 'error'
-          })
-          break
-        case 422:
-          Message({
-            showClose: true,
-            message: error.response.data.errors,
-            type: 'error'
-          })
-          break
-        case 500:
-          Message({
-            showClose: true,
-            message: '服务器发生内部错误，请稍后再试',
-            type: 'error'
-          })
-          break
-      }
-    } else {
-      Message({
-        showClose: true,
-        message: error.message,
-        type: 'error'
-      })
+        })
+        break
+      case 403:
+        Message({
+          showClose: true,
+          message: '你没有权限访问该资源!',
+          type: 'warning'
+        })
+        break
+      case 400:
+        Message({
+          showClose: true,
+          message: error.response.data.value.error,
+          type: 'error'
+        })
+        break
+      case 404:
+        Message({
+          showClose: true,
+          message: error.response.data.value.error,
+          type: 'error'
+        })
+        break
+      case 422:
+        Message({
+          showClose: true,
+          message: error.response.data.errors,
+          type: 'error'
+        })
+        break
+      case 500:
+        Message({
+          showClose: true,
+          message: '服务器发生内部错误，请稍后再试',
+          type: 'error'
+        })
+        break
     }
-    return Promise.reject(error.response.data)
+  } else {
+    Message({
+      showClose: true,
+      message: error.message,
+      type: 'error'
+    })
   }
+  return Promise.reject(error.response.data)
+}
 )
 
 export default service

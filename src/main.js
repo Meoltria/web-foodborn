@@ -13,7 +13,6 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-
 module.exports = {
   alias: {
     'vue$': 'vue/dist/vue.runtime.js'

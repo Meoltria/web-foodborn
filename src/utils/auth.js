@@ -1,13 +1,13 @@
 const TokenKey = 'Token'
 
-export function getToken() {
+export function getToken () {
   return localStorage.getItem(TokenKey)
 }
 
-export function setToken(token) {
+export function setToken (token) {
   localStorage.setItem(TokenKey, token)
 }
 
-export function removeToken() {
+export function removeToken () {
   localStorage.removeItem(TokenKey)
 }

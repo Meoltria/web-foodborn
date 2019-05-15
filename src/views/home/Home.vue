@@ -20,5 +20,5 @@ export default {
     Head,
     Sidebar
   }
-};
+}
 </script>

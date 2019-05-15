@@ -191,7 +191,7 @@ export default {
   },
   methods: {
     getList () {
-      this.listLoading = true;
+      this.listLoading = true
       getDictionaries(this.listQuery).then(response => {
         this.list = response.data
         this.total = parseInt(response.headers['x-totalcount'])
@@ -216,7 +216,7 @@ export default {
         if (valid) {
           createDictonary(this.temp).then(response => {
             if (response.status === 201) {
-              this.dialogFormVisible = false;
+              this.dialogFormVisible = false
               this.$notify({
                 title: '成功',
                 message: '创建成功',
@@ -236,7 +236,7 @@ export default {
         if (valid) {
           updateDictonary(this.temp).then(response => {
             if (response.status === 204) {
-              this.dialogFormVisible = false;
+              this.dialogFormVisible = false
               this.$notify({
                 title: '成功',
                 message: '修改成功',
@@ -247,7 +247,7 @@ export default {
             }
           })
         } else {
-          return false;
+          return false
         }
       })
     },
@@ -304,7 +304,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          this.deleteTemp(row.id);
+          this.deleteTemp(row.id)
         })
         .catch(() => {
           this.$message({

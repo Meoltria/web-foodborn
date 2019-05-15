@@ -1,20 +1,20 @@
 import fetch from '@/utils/fetch'
 
-export function getOrgTree(id) {
+export function getOrgTree (id) {
   return fetch({
     url: `/Orgs/${id}/WithTree/Orgs`,
     method: 'get'
   })
 }
 
-export function getOrgTreeByType(parentId, orgTypeCode) {
+export function getOrgTreeByType (parentId, orgTypeCode) {
   return fetch({
     url: `/Orgs/${parentId}/${orgTypeCode}/WithTree/Orgs`,
     method: 'get'
   })
 }
 
-export function getOrgs(id, params) {
+export function getOrgs (id, params) {
   return fetch({
     url: `/Orgs/${id}/Orgs`,
     method: 'get',
@@ -22,14 +22,14 @@ export function getOrgs(id, params) {
   })
 }
 
-export function getOrg(id) {
+export function getOrg (id) {
   return fetch({
     url: `/Orgs/${id}`,
     method: 'get'
   })
 }
 
-export function createOrg(data) {
+export function createOrg (data) {
   return fetch({
     url: '/Orgs',
     method: 'post',
@@ -37,7 +37,7 @@ export function createOrg(data) {
   })
 }
 
-export function updateOrg(data) {
+export function updateOrg (data) {
   return fetch({
     url: `/Orgs/${data.id}`,
     method: 'put',
@@ -45,7 +45,7 @@ export function updateOrg(data) {
   })
 }
 
-export function deleteOrg(id) {
+export function deleteOrg (id) {
   return fetch({
     url: `/Orgs/${id}`,
     method: 'delete'

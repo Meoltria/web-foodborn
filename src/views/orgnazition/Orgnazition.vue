@@ -226,12 +226,12 @@ export default {
       var id = this.selected[this.selected.length - 1]
       getOrgs(id, this.listQuery).then(response => {
         this.list = response.data
-        this.total = parseInt(response.headers["x-totalcount"])
+        this.total = parseInt(response.headers['x-totalcount'])
         this.listLoading = false
       })
     },
     getOrgTypeSelects () {
-      getDictonarySelect("OrgType").then(response => {
+      getDictonarySelect('OrgType').then(response => {
         this.orgTypeSelects = response.data
       })
     },

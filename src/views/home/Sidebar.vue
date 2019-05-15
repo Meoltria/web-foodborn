@@ -45,9 +45,8 @@ export default {
       return this.$route.path.replace('/', '')
     }
   }
-};
+}
 </script>
-
 
 <style scoped>
 .sidebar {
