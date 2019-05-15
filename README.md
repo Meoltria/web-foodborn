@@ -1,4 +1,5 @@
 # web-foodborn
+<<<<<<< HEAD
 
 ## Project setup
 ```
@@ -27,3 +28,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+食源性疾病监测前端
+>>>>>>> 6524577233f30d99413dae918e80011db1ff5bb1
