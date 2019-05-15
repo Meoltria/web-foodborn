@@ -9,100 +9,112 @@
       </el-breadcrumb>
     </div>
     <div class="handle-box">
-      <el-input v-model="listQuery.typeCode" placeholder="字典类别代码" class="handle-input"></el-input>
-      <el-input v-model="listQuery.typeName" placeholder="字典类别名称" class="handle-input"></el-input>
-      <el-button type="primary" icon="el-icon-search" @click="search">查询</el-button>
-      <el-button type="primary" icon="el-icon-plus" @click="handleCreate">添加</el-button>
+      <el-input v-model="listQuery.typeCode"
+                placeholder="字典类别代码"
+                class="handle-input"></el-input>
+      <el-input v-model="listQuery.typeName"
+                placeholder="字典类别名称"
+                class="handle-input"></el-input>
+      <el-button type="primary"
+                 icon="el-icon-search"
+                 @click="search">查询</el-button>
+      <el-button type="primary"
+                 icon="el-icon-plus"
+                 @click="handleCreate">添加</el-button>
     </div>
-    <el-table
-      :data="list"
-      v-loading="listLoading"
-      element-loading-text="正在加载数据..."
-      borde
-      fit
-      highlight-current-row
-      style="width:100%"
-    >
-      <el-table-column align="center" label="字典类别代码">
+    <el-table :data="list"
+              v-loading="listLoading"
+              element-loading-text="正在加载数据..."
+              borde
+              fit
+              highlight-current-row
+              style="width:100%">
+      <el-table-column align="center"
+                       label="字典类别代码">
         <template slot-scope="scope">
           <span>{{scope.row.typeCode}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="字典类别名称">
+      <el-table-column align="center"
+                       label="字典类别名称">
         <template slot-scope="scope">
           <span>{{scope.row.typeName}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="字典编码">
+      <el-table-column align="center"
+                       label="字典编码">
         <template slot-scope="scope">
           <span>{{scope.row.code}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="字典名称">
+      <el-table-column align="center"
+                       label="字典名称">
         <template slot-scope="scope">
           <span>{{scope.row.name}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="备注名称">
+      <el-table-column align="center"
+                       label="备注名称">
         <template slot-scope="scope">
           <span>{{scope.row.remarkName}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="备注值">
+      <el-table-column align="center"
+                       label="备注值">
         <template slot-scope="scope">
           <span>{{scope.row.remarkValue}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="操作" width="180px">
+      <el-table-column align="center"
+                       label="操作"
+                       width="180px">
         <template slot-scope="scope">
-          <el-button
-            type="primary"
-            icon="el-icon-edit"
-            size="small"
-            @click="handleEdit(scope.row)"
-          >编辑</el-button>
-          <el-button
-            type="danger"
-            icon="el-icon-delete"
-            size="small"
-            @click="handleDelete(scope.row)"
-          >删除</el-button>
+          <el-button type="primary"
+                     icon="el-icon-edit"
+                     size="small"
+                     @click="handleEdit(scope.row)">编辑</el-button>
+          <el-button type="danger"
+                     icon="el-icon-delete"
+                     size="small"
+                     @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <div v-show="!listLoading" class="pagination">
-      <el-pagination
-        :page-sizes="[10,15,20,30]"
-        :page-size="listQuery.per_Page"
-        layout="total, sizes, prev, pager, next"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page.sync="listQuery.page"
-        :total="total"
-      ></el-pagination>
+    <div v-show="!listLoading"
+         class="pagination">
+      <el-pagination :page-sizes="[10,15,20,30]"
+                     :page-size="listQuery.per_Page"
+                     layout="total, sizes, prev, pager, next"
+                     @size-change="handleSizeChange"
+                     @current-change="handleCurrentChange"
+                     :current-page.sync="listQuery.page"
+                     :total="total"></el-pagination>
     </div>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form
-        class="small-space"
-        :model="temp"
-        :rules="rules"
-        ref="temp"
-        label-position="left"
-        label-width="120px"
-        style="width: 450px; margin-left:50px;"
-      >
-        <el-form-item label="字典类别代码" prop="typeCode">
+    <el-dialog :title="textMap[dialogStatus]"
+               :visible.sync="dialogFormVisible">
+      <el-form class="small-space"
+               :model="temp"
+               :rules="rules"
+               ref="temp"
+               label-position="left"
+               label-width="120px"
+               style="width: 450px; margin-left:50px;">
+        <el-form-item label="字典类别代码"
+                      prop="typeCode">
           <el-input v-model="temp.typeCode"></el-input>
         </el-form-item>
-        <el-form-item label="字典类别名称" prop="typeName">
+        <el-form-item label="字典类别名称"
+                      prop="typeName">
           <el-input v-model="temp.typeName"></el-input>
         </el-form-item>
-        <el-form-item label="字典编码" prop="code">
+        <el-form-item label="字典编码"
+                      prop="code">
           <el-input v-model="temp.code"></el-input>
         </el-form-item>
-        <el-form-item label="字典名称" prop="name">
+        <el-form-item label="字典名称"
+                      prop="name">
           <el-input v-model="temp.name"></el-input>
         </el-form-item>
         <el-form-item label="备注名称">
@@ -112,10 +124,15 @@
           <el-input v-model="temp.remarkValue"></el-input>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
+      <div slot="footer"
+           class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button v-if="dialogStatus=='create'" type="primary" @click="createTemp">确 定</el-button>
-        <el-button v-if="dialogStatus=='edit'" type="primary" @click="updateTemp">确 定</el-button>
+        <el-button v-if="dialogStatus=='create'"
+                   type="primary"
+                   @click="createTemp">确 定</el-button>
+        <el-button v-if="dialogStatus=='edit'"
+                   type="primary"
+                   @click="updateTemp">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -131,7 +148,7 @@ import {
 } from '@/api/dictionary'
 
 export default {
-  data() {
+  data () {
     return {
       list: null,
       total: null,
@@ -167,13 +184,13 @@ export default {
         create: '创建字典',
         edit: '编辑字典'
       }
-    };
+    }
   },
-  created() {
+  created () {
     this.getList()
   },
   methods: {
-    getList() {
+    getList () {
       this.listLoading = true;
       getDictionaries(this.listQuery).then(response => {
         this.list = response.data
@@ -181,7 +198,7 @@ export default {
         this.listLoading = false
       })
     },
-    getTemp(id) {
+    getTemp (id) {
       getDictonary(id).then(response => {
         this.temp = {
           id: response.data.id,
@@ -194,7 +211,7 @@ export default {
         }
       })
     },
-    createTemp() {
+    createTemp () {
       this.$refs.temp.validate(valid => {
         if (valid) {
           createDictonary(this.temp).then(response => {
@@ -214,7 +231,7 @@ export default {
         }
       })
     },
-    updateTemp() {
+    updateTemp () {
       this.$refs.temp.validate(valid => {
         if (valid) {
           updateDictonary(this.temp).then(response => {
@@ -232,9 +249,9 @@ export default {
         } else {
           return false;
         }
-      });
+      })
     },
-    deleteTemp(id) {
+    deleteTemp (id) {
       deleteDictonary(id).then(response => {
         if (response.status === 204) {
           this.$notify({
@@ -247,11 +264,11 @@ export default {
         }
       })
     },
-    search() {
+    search () {
       this.listQuery.page = 1
       this.getList()
     },
-    resetTemp() {
+    resetTemp () {
       this.temp = {
         id: undefined,
         typeCode: '',
@@ -260,27 +277,27 @@ export default {
         name: '',
         remarkName: '',
         remarkValue: ''
-      };
+      }
     },
-    handleSizeChange(val) {
+    handleSizeChange (val) {
       this.listQuery.per_Page = val
       this.getList()
     },
-    handleCurrentChange(val) {
+    handleCurrentChange (val) {
       this.listQuery.page = val
       this.getList()
     },
-    handleCreate() {
+    handleCreate () {
       this.resetTemp()
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
     },
-    handleEdit(row) {
+    handleEdit (row) {
       this.getTemp(row.id)
       this.dialogStatus = 'edit'
       this.dialogFormVisible = true
     },
-    handleDelete(row) {
+    handleDelete (row) {
       this.$confirm('确定要删除当前信息？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -297,7 +314,7 @@ export default {
         })
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -314,4 +331,3 @@ export default {
   display: inline-block;
 }
 </style>
-

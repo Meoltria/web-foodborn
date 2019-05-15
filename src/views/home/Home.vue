@@ -1,9 +1,11 @@
 <template>
   <div class="wrapper">
+
     <Head></Head>
     <Sidebar></Sidebar>
     <div class="content">
-      <transition name="move" mode="out-in">
+      <transition name="move"
+                  mode="out-in">
         <router-view></router-view>
       </transition>
     </div>

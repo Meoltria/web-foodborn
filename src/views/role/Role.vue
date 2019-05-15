@@ -9,166 +9,118 @@
       </el-breadcrumb>
     </div>
     <div class="handle-box">
-      <el-button
-        type="primary"
-        icon="el-icon-search"
-        @click="search"
-      >查询</el-button>
-      <el-button
-        type="primary"
-        icon="el-icon-plus"
-        @click="handleCreate"
-      >添加</el-button>
+      <el-button type="primary"
+                 icon="el-icon-search"
+                 @click="search">查询</el-button>
+      <el-button type="primary"
+                 icon="el-icon-plus"
+                 @click="handleCreate">添加</el-button>
     </div>
-    <el-table
-      :data="list"
-      v-loading="listLoading"
-      element-loading-text="正在加载数据..."
-      borde
-      fit
-      highlight-current-row
-      style="width:100%"
-    >
-      <el-table-column
-        align="center"
-        label="角色编码"
-      >
+    <el-table :data="list"
+              v-loading="listLoading"
+              element-loading-text="正在加载数据..."
+              borde
+              fit
+              highlight-current-row
+              style="width:100%">
+      <el-table-column align="center"
+                       label="角色编码">
         <template slot-scope="scope">
           <span>{{scope.row.code}}</span>
         </template>
       </el-table-column>
-      <el-table-column
-        align="center"
-        label="角色名称"
-      >
+      <el-table-column align="center"
+                       label="角色名称">
         <template slot-scope="scope">
           <span>{{scope.row.name}}</span>
         </template>
       </el-table-column>
-      <el-table-column
-        align="center"
-        label="角色描述"
-      >
+      <el-table-column align="center"
+                       label="角色描述">
         <template slot-scope="scope">
           <span>{{scope.row.description}}</span>
         </template>
       </el-table-column>
-      <el-table-column
-        align="center"
-        label="操作"
-        width="270px"
-      >
+      <el-table-column align="center"
+                       label="操作"
+                       width="270px">
         <template slot-scope="scope">
-          <el-button
-            type="primary"
-            icon="el-icon-edit"
-            size="small"
-            @click="handleEdit(scope.row)"
-          >编辑</el-button>
-          <el-button
-            type="primary"
-            icon="el-icon-setting"
-            size="small"
-            @click="handlePower(scope.row)"
-          >权限</el-button>
-          <el-button
-            type="danger"
-            icon="el-icon-delete"
-            size="small"
-            @click="handleDelete(scope.row)"
-          >删除</el-button>
+          <el-button type="primary"
+                     icon="el-icon-edit"
+                     size="small"
+                     @click="handleEdit(scope.row)">编辑</el-button>
+          <el-button type="primary"
+                     icon="el-icon-setting"
+                     size="small"
+                     @click="handlePower(scope.row)">权限</el-button>
+          <el-button type="danger"
+                     icon="el-icon-delete"
+                     size="small"
+                     @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <div
-      v-show="!listLoading"
-      class="pagination"
-    >
-      <el-pagination
-        :page-sizes="[10,15,20,30]"
-        :page-size="listQuery.per_Page"
-        layout="total, sizes, prev, pager, next"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page.sync="listQuery.page"
-        :total="total"
-      ></el-pagination>
+    <div v-show="!listLoading"
+         class="pagination">
+      <el-pagination :page-sizes="[10,15,20,30]"
+                     :page-size="listQuery.per_Page"
+                     layout="total, sizes, prev, pager, next"
+                     @size-change="handleSizeChange"
+                     @current-change="handleCurrentChange"
+                     :current-page.sync="listQuery.page"
+                     :total="total"></el-pagination>
     </div>
 
-    <el-dialog
-      :title="textMap[dialogStatus]"
-      :visible.sync="dialogFormVisible"
-    >
-      <el-form
-        class="small-space"
-        :model="temp"
-        :rules="rules"
-        ref="temp"
-        label-position="left"
-        label-width="120px"
-        style="width: 450px; margin-left:50px;"
-      >
-        <el-form-item
-          label="角色编码"
-          prop="code"
-        >
+    <el-dialog :title="textMap[dialogStatus]"
+               :visible.sync="dialogFormVisible">
+      <el-form class="small-space"
+               :model="temp"
+               :rules="rules"
+               ref="temp"
+               label-position="left"
+               label-width="120px"
+               style="width: 450px; margin-left:50px;">
+        <el-form-item label="角色编码"
+                      prop="code">
           <el-input v-model="temp.code"></el-input>
         </el-form-item>
-        <el-form-item
-          label="角色名称"
-          prop="name"
-        >
+        <el-form-item label="角色名称"
+                      prop="name">
           <el-input v-model="temp.name"></el-input>
         </el-form-item>
         <el-form-item label="角色描述">
-          <el-input
-            type="textarea"
-            v-model="temp.description"
-          ></el-input>
+          <el-input type="textarea"
+                    v-model="temp.description"></el-input>
         </el-form-item>
       </el-form>
-      <div
-        slot="footer"
-        class="dialog-footer"
-      >
+      <div slot="footer"
+           class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button
-          v-if="dialogStatus=='create'"
-          type="primary"
-          @click="createTemp"
-        >确 定</el-button>
-        <el-button
-          v-if="dialogStatus=='edit'"
-          type="primary"
-          @click="updateTemp"
-        >确 定</el-button>
+        <el-button v-if="dialogStatus=='create'"
+                   type="primary"
+                   @click="createTemp">确 定</el-button>
+        <el-button v-if="dialogStatus=='edit'"
+                   type="primary"
+                   @click="updateTemp">确 定</el-button>
       </div>
     </el-dialog>
 
-    <el-dialog
-      title="设置权限"
-      :visible.sync="dialogPowerVisible"
-    >
-      <el-tree
-        ref="powerTree"
-        :data="powerTree"
-        :props="defaultProps"
-        :default-checked-keys="powerTemp.permIds"
-        node-key="id"
-        check-strictly
-        show-checkbox
-        default-expand-all
-      ></el-tree>
-      <div
-        slot="footer"
-        class="dialog-footer"
-      >
+    <el-dialog title="设置权限"
+               :visible.sync="dialogPowerVisible">
+      <el-tree ref="powerTree"
+               :data="powerTree"
+               :props="defaultProps"
+               :default-checked-keys="powerTemp.permIds"
+               node-key="id"
+               check-strictly
+               show-checkbox
+               default-expand-all></el-tree>
+      <div slot="footer"
+           class="dialog-footer">
         <el-button @click="dialogPowerVisible = false">取 消</el-button>
-        <el-button
-          type="primary"
-          @click="setPowerTemp"
-        >确 定</el-button>
+        <el-button type="primary"
+                   @click="setPowerTemp">确 定</el-button>
       </div>
     </el-dialog>
   </div>

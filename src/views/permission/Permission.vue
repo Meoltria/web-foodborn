@@ -8,86 +8,142 @@
     </div>
     <div class="handle-box">
       父级功能:
-      <el-cascader :options="selects" :props="defaultProps" v-model="selected"  @change="handleChange" change-on-select>
+      <el-cascader :options="selects"
+                   :props="defaultProps"
+                   v-model="selected"
+                   @change="handleChange"
+                   change-on-select>
       </el-cascader>
-      <el-button type="primary" icon="el-icon-search" @click="search">查询</el-button>
-      <el-button type="primary" icon="el-icon-plus" @click="handleCreate">添加</el-button>
+      <el-button type="primary"
+                 icon="el-icon-search"
+                 @click="search">查询</el-button>
+      <el-button type="primary"
+                 icon="el-icon-plus"
+                 @click="handleCreate">添加</el-button>
     </div>
-    <el-table :data="list" v-loading="listLoading" element-loading-text="正在加载数据..." borde fit highlight-current-row style="width:100%">
-      <el-table-column align="center" label="功能编码">
+    <el-table :data="list"
+              v-loading="listLoading"
+              element-loading-text="正在加载数据..."
+              borde
+              fit
+              highlight-current-row
+              style="width:100%">
+      <el-table-column align="center"
+                       label="功能编码">
         <template slot-scope="scope">
           <span>{{scope.row.code}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="功能名称">
+      <el-table-column align="center"
+                       label="功能名称">
         <template slot-scope="scope">
           <span>{{scope.row.name}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="功能类型" width="120px">
+      <el-table-column align="center"
+                       label="功能类型"
+                       width="120px">
         <template slot-scope="scope">
           <span>{{scope.row.property}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="功能描述">
+      <el-table-column align="center"
+                       label="功能描述">
         <template slot-scope="scope">
           <span>{{scope.row.description}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="排序">
+      <el-table-column align="center"
+                       label="排序">
         <template slot-scope="scope">
           <span>{{scope.row.order}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="操作" width="180px">
+      <el-table-column align="center"
+                       label="操作"
+                       width="180px">
         <template slot-scope="scope">
-          <el-button type="primary" icon="el-icon-edit" size="small" @click="handleEdit(scope.row)">编辑</el-button>
-          <el-button type="danger" icon="el-icon-delete" size="small" @click="handleDelete(scope.row)">删除</el-button>
+          <el-button type="primary"
+                     icon="el-icon-edit"
+                     size="small"
+                     @click="handleEdit(scope.row)">编辑</el-button>
+          <el-button type="danger"
+                     icon="el-icon-delete"
+                     size="small"
+                     @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <div v-show="!listLoading" class="pagination">
-      <el-pagination :page-sizes="[10,15,20,30]" :page-size="listQuery.per_Page"  layout="total, sizes, prev, pager, next" @size-change="handleSizeChange"
-        @current-change="handleCurrentChange" :current-page.sync="listQuery.page" :total='total'>
+    <div v-show="!listLoading"
+         class="pagination">
+      <el-pagination :page-sizes="[10,15,20,30]"
+                     :page-size="listQuery.per_Page"
+                     layout="total, sizes, prev, pager, next"
+                     @size-change="handleSizeChange"
+                     @current-change="handleCurrentChange"
+                     :current-page.sync="listQuery.page"
+                     :total='total'>
       </el-pagination>
     </div>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form class="small-space" :model="temp" :rules="rules" ref="temp" label-position="left" label-width="120px" style='width: 450px; margin-left:50px;'>
-        <el-form-item label="功能编码" prop="code">
+    <el-dialog :title="textMap[dialogStatus]"
+               :visible.sync="dialogFormVisible">
+      <el-form class="small-space"
+               :model="temp"
+               :rules="rules"
+               ref="temp"
+               label-position="left"
+               label-width="120px"
+               style='width: 450px; margin-left:50px;'>
+        <el-form-item label="功能编码"
+                      prop="code">
           <el-input v-model="temp.code"></el-input>
         </el-form-item>
-        <el-form-item label="功能名称" prop="name">
+        <el-form-item label="功能名称"
+                      prop="name">
           <el-input v-model="temp.name"></el-input>
         </el-form-item>
-        <el-form-item label="功能类型" prop="property">
+        <el-form-item label="功能类型"
+                      prop="property">
           <el-select v-model="temp.property">
-            <el-option v-for="item in propertySelects" :key="item.code" :label="item.name" :value="item.code">
+            <el-option v-for="item in propertySelects"
+                       :key="item.code"
+                       :label="item.name"
+                       :value="item.code">
             </el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="父级功能">
-          <el-cascader :options="selects" :props="defaultProps" v-model="tempSelected"  change-on-select>
+          <el-cascader :options="selects"
+                       :props="defaultProps"
+                       v-model="tempSelected"
+                       change-on-select>
           </el-cascader>
         </el-form-item>
         <el-form-item label="功能图标">
-           <el-input  v-model="temp.icon"></el-input>
+          <el-input v-model="temp.icon"></el-input>
         </el-form-item>
         <el-form-item label="功能路径">
           <el-input v-model="temp.path"></el-input>
         </el-form-item>
         <el-form-item label="功能描述">
-          <el-input type="textarea" v-model="temp.description"></el-input>
+          <el-input type="textarea"
+                    v-model="temp.description"></el-input>
         </el-form-item>
         <el-form-item label="功能排序">
           <el-input v-model="temp.order"></el-input>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
+      <div slot="footer"
+           class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button v-if="dialogStatus=='create'" type="primary" @click="createTemp">确 定</el-button>
-        <el-button v-if="dialogStatus=='edit'" type="primary" @click="updateTemp">确 定</el-button>
+        <el-button v-if="dialogStatus=='create'"
+                   type="primary"
+                   @click="createTemp">确 定</el-button>
+        <el-button v-if="dialogStatus=='edit'"
+                   type="primary"
+                   @click="updateTemp">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -307,16 +363,16 @@ export default {
 </script>
 
 <style scoped>
-  .handle-box{
-    margin-bottom: 20px;
-  }
+.handle-box {
+  margin-bottom: 20px;
+}
 
-  .handle-select{
-    width: 120px;
-  }
+.handle-select {
+  width: 120px;
+}
 
-  .handle-input{
-    width: 180px;
-    display: inline-block;
-  }
+.handle-input {
+  width: 180px;
+  display: inline-block;
+}
 </style>

@@ -2,20 +2,24 @@
   <div class="login-wrap">
     <div class="ms-title">益康食源性疾病监测平台</div>
     <div class="ms-login">
-      <el-form
-        :model="loginForm"
-        :rules="rules"
-        ref="loginForm"
-        label-position="left"
-        label-width="0px"
-      >
+      <el-form :model="loginForm"
+               :rules="rules"
+               ref="loginForm"
+               label-position="left"
+               label-width="0px">
         <el-form-item prop="userName">
-          <el-input name="userName" v-model="loginForm.userName" placeholder="用户名"></el-input>
+          <el-input name="userName"
+                    v-model="loginForm.userName"
+                    placeholder="用户名"></el-input>
         </el-form-item>
         <el-form-item prop="passWord">
-          <el-input name="passWord" type="password" v-model="loginForm.passWord" placeholder="密码"></el-input>
+          <el-input name="passWord"
+                    type="password"
+                    v-model="loginForm.passWord"
+                    placeholder="密码"></el-input>
           <div class="login-btn">
-            <el-button type="primary" @click="submitForm()">登录</el-button>
+            <el-button type="primary"
+                       @click="submitForm()">登录</el-button>
           </div>
         </el-form-item>
       </el-form>
@@ -25,7 +29,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       loginForm: {
         userName: '',
@@ -40,7 +44,7 @@ export default {
     }
   },
   methods: {
-    submitForm() {
+    submitForm () {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true

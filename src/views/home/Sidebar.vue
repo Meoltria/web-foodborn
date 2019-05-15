@@ -1,15 +1,20 @@
 <template>
   <div class="sidebar">
-    <el-menu :default-active="onRoutes" class="el-menu-vertical-demo" unique-opened router>
+    <el-menu :default-active="onRoutes"
+             class="el-menu-vertical-demo"
+             unique-opened
+             router>
       <template v-for="perm in permissions">
         <template v-if="perm.permissionProperty == '目录'">
-          <el-submenu :index="perm.permissionCode" :key="perm.permissionCode">
+          <el-submenu :index="perm.permissionCode"
+                      :key="perm.permissionCode">
             <template slot="title">
               <i :class="perm.permissionIcon"></i>
               {{perm.permissionName}}
             </template>
             <template v-for="child in perm.children">
-              <el-menu-item :key="child.permissionId" :index="child.permissionCode">
+              <el-menu-item :key="child.permissionId"
+                            :index="child.permissionCode">
                 <i :class="child.permissionIcon"></i>
                 {{child.permissionName}}
               </el-menu-item>
@@ -17,7 +22,8 @@
           </el-submenu>
         </template>
         <template v-else>
-          <el-menu-item :index="perm.permissionCode" :key="perm.permissionCode">
+          <el-menu-item :index="perm.permissionCode"
+                        :key="perm.permissionCode">
             <i :class="perm.permissionIcon"></i>
             {{perm.permissionName}}
           </el-menu-item>
@@ -29,13 +35,13 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       permissions: this.$store.getters.permissions
     }
   },
   computed: {
-    onRoutes() {
+    onRoutes () {
       return this.$route.path.replace('/', '')
     }
   }

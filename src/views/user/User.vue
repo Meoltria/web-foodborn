@@ -10,164 +10,175 @@
     </div>
     <div class="handle-box">
       所属部门:
-      <el-cascader
-        :options="orgSelects"
-        :props="defaultProps"
-        v-model="orgSelected"
-        @change="handleChange"
-        change-on-select
-      ></el-cascader>
-      <el-input v-model="listQuery.name" placeholder="用户名称" class="handle-input"></el-input>
-      <el-button type="primary" icon="el-icon-search" @click="search">查询</el-button>
-      <el-button type="primary" icon="el-icon-plus" @click="handleCreate">添加</el-button>
+      <el-cascader :options="orgSelects"
+                   :props="defaultProps"
+                   v-model="orgSelected"
+                   @change="handleChange"
+                   change-on-select></el-cascader>
+      <el-input v-model="listQuery.name"
+                placeholder="用户名称"
+                class="handle-input"></el-input>
+      <el-button type="primary"
+                 icon="el-icon-search"
+                 @click="search">查询</el-button>
+      <el-button type="primary"
+                 icon="el-icon-plus"
+                 @click="handleCreate">添加</el-button>
     </div>
-    <el-table
-      :data="list"
-      v-loading="listLoading"
-      element-loading-text="正在加载数据..."
-      borde
-      fit
-      highlight-current-row
-      style="width:100%"
-    >
-      <el-table-column align="center" label="用户编码">
+    <el-table :data="list"
+              v-loading="listLoading"
+              element-loading-text="正在加载数据..."
+              borde
+              fit
+              highlight-current-row
+              style="width:100%">
+      <el-table-column align="center"
+                       label="用户编码">
         <template slot-scope="scope">
           <span>{{scope.row.code}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="用户名称">
+      <el-table-column align="center"
+                       label="用户名称">
         <template slot-scope="scope">
           <span>{{scope.row.name}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="性别" width="80px">
+      <el-table-column align="center"
+                       label="性别"
+                       width="80px">
         <template slot-scope="scope">
           <span>{{scope.row.genderName}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="用户类型" width="120px">
+      <el-table-column align="center"
+                       label="用户类型"
+                       width="120px">
         <template slot-scope="scope">
           <span>{{scope.row.userTypeName}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="用户部门">
+      <el-table-column align="center"
+                       label="用户部门">
         <template slot-scope="scope">
           <span>{{scope.row.organazitionName}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="用户角色">
+      <el-table-column align="center"
+                       label="用户角色">
         <template slot-scope="scope">
           <span>{{scope.row.roleName}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="操作" width="180px">
+      <el-table-column align="center"
+                       label="操作"
+                       width="180px">
         <template slot-scope="scope">
-          <el-button
-            type="primary"
-            icon="el-icon-edit"
-            size="small"
-            @click="handleEdit(scope.row)"
-          >编辑</el-button>
-          <el-button
-            type="danger"
-            icon="el-icon-delete"
-            size="small"
-            @click="handleDelete(scope.row)"
-          >删除</el-button>
+          <el-button type="primary"
+                     icon="el-icon-edit"
+                     size="small"
+                     @click="handleEdit(scope.row)">编辑</el-button>
+          <el-button type="danger"
+                     icon="el-icon-delete"
+                     size="small"
+                     @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <div v-show="!listLoading" class="pagination">
-      <el-pagination
-        :page-sizes="[10,15,20,30]"
-        :page-size="listQuery.per_Page"
-        layout="total, sizes, prev, pager, next"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page.sync="listQuery.page"
-        :total="total"
-      ></el-pagination>
+    <div v-show="!listLoading"
+         class="pagination">
+      <el-pagination :page-sizes="[10,15,20,30]"
+                     :page-size="listQuery.per_Page"
+                     layout="total, sizes, prev, pager, next"
+                     @size-change="handleSizeChange"
+                     @current-change="handleCurrentChange"
+                     :current-page.sync="listQuery.page"
+                     :total="total"></el-pagination>
     </div>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form
-        class="small-space"
-        :model="temp"
-        :rules="rules"
-        ref="temp"
-        label-position="left"
-        label-width="120px"
-        style="width: 450px; margin-left:50px;"
-      >
-        <el-form-item label="用户编码" prop="code">
+    <el-dialog :title="textMap[dialogStatus]"
+               :visible.sync="dialogFormVisible">
+      <el-form class="small-space"
+               :model="temp"
+               :rules="rules"
+               ref="temp"
+               label-position="left"
+               label-width="120px"
+               style="width: 450px; margin-left:50px;">
+        <el-form-item label="用户编码"
+                      prop="code">
           <el-input v-model="temp.code"></el-input>
         </el-form-item>
-        <el-form-item label="用户名称" prop="name">
+        <el-form-item label="用户名称"
+                      prop="name">
           <el-input v-model="temp.name"></el-input>
         </el-form-item>
-        <el-form-item label="密   码" prop="passWord" v-if="dialogStatus=='create'">
-          <el-input type="password" v-model="temp.passWord"></el-input>
+        <el-form-item label="密   码"
+                      prop="passWord"
+                      v-if="dialogStatus=='create'">
+          <el-input type="password"
+                    v-model="temp.passWord"></el-input>
         </el-form-item>
-        <el-form-item label="用户类型" prop="userTypeCode">
+        <el-form-item label="用户类型"
+                      prop="userTypeCode">
           <el-select v-model="temp.userTypeCode">
-            <el-option
-              v-for="item in userTypeSelects"
-              :key="item.code"
-              :label="item.name"
-              :value="item.code"
-            ></el-option>
+            <el-option v-for="item in userTypeSelects"
+                       :key="item.code"
+                       :label="item.name"
+                       :value="item.code"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="所属部门">
-          <el-cascader
-            :options="orgSelects"
-            :props="defaultProps"
-            v-model="tempOrgSelected"
-            change-on-select
-          ></el-cascader>
+          <el-cascader :options="orgSelects"
+                       :props="defaultProps"
+                       v-model="tempOrgSelected"
+                       change-on-select></el-cascader>
         </el-form-item>
-        <el-form-item label="所属角色" prop="roleId">
+        <el-form-item label="所属角色"
+                      prop="roleId">
           <el-select v-model.number="temp.roleId">
-            <el-option
-              v-for="item in roleSelects"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            ></el-option>
+            <el-option v-for="item in roleSelects"
+                       :key="item.id"
+                       :label="item.name"
+                       :value="item.id"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="性  别" prop="genderCode">
+        <el-form-item label="性  别"
+                      prop="genderCode">
           <el-select v-model="temp.genderCode">
-            <el-option
-              v-for="item in genderSelects"
-              :key="item.code"
-              :label="item.name"
-              :value="item.code"
-            ></el-option>
+            <el-option v-for="item in genderSelects"
+                       :key="item.code"
+                       :label="item.name"
+                       :value="item.code"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="职  称" prop="userRankCode">
+        <el-form-item label="职  称"
+                      prop="userRankCode">
           <el-select v-model="temp.userRankCode">
-            <el-option
-              v-for="item in userRankSelects"
-              :key="item.code"
-              :label="item.name"
-              :value="item.code"
-            ></el-option>
+            <el-option v-for="item in userRankSelects"
+                       :key="item.code"
+                       :label="item.name"
+                       :value="item.code"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="电话">
           <el-input v-model="temp.tel"></el-input>
         </el-form-item>
         <el-form-item label="介绍信息">
-          <el-input type="textarea" v-model="temp.info"></el-input>
+          <el-input type="textarea"
+                    v-model="temp.info"></el-input>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
+      <div slot="footer"
+           class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button v-if="dialogStatus=='create'" type="primary" @click="createTemp">确 定</el-button>
-        <el-button v-if="dialogStatus=='edit'" type="primary" @click="updateTemp">确 定</el-button>
+        <el-button v-if="dialogStatus=='create'"
+                   type="primary"
+                   @click="createTemp">确 定</el-button>
+        <el-button v-if="dialogStatus=='edit'"
+                   type="primary"
+                   @click="updateTemp">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -186,7 +197,7 @@ import {
 } from '@/api/user'
 
 export default {
-  data() {
+  data () {
     return {
       list: null,
       total: null,
@@ -248,7 +259,7 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.getOrgSelects()
     this.getRoleSelects()
     this.getUserTypeSelects()
@@ -257,17 +268,17 @@ export default {
     this.getList()
   },
   methods: {
-    getOrgSelects() {
+    getOrgSelects () {
       getOrgTree(1).then(response => {
         this.orgSelects = [response.data]
       })
     },
-    getRoleSelects() {
+    getRoleSelects () {
       getRoles().then(response => {
         this.roleSelects = response.data
       })
     },
-    getList() {
+    getList () {
       this.listLoading = true;
       var orgId = this.orgSelected[this.orgSelected.length - 1];
       getOrgUsers(orgId, this.listQuery).then(response => {
@@ -276,22 +287,22 @@ export default {
         this.listLoading = false
       })
     },
-    getUserTypeSelects() {
+    getUserTypeSelects () {
       getDictonarySelect('UserType').then(response => {
         this.userTypeSelects = response.data
       })
     },
-    getGenderSelects() {
+    getGenderSelects () {
       getDictonarySelect('Gender').then(response => {
         this.genderSelects = response.data
       })
     },
-    getUserRankSelects() {
+    getUserRankSelects () {
       getDictonarySelect('UserRank').then(response => {
         this.userRankSelects = response.data
       })
     },
-    getTemp(id) {
+    getTemp (id) {
       getUser(id).then(response => {
         this.temp = {
           id: response.data.id,
@@ -312,7 +323,7 @@ export default {
         }
       })
     },
-    createTemp() {
+    createTemp () {
       this.$refs.temp.validate(valid => {
         if (valid) {
           this.temp.userTypeName = this.userTypeSelects.find(
@@ -344,7 +355,7 @@ export default {
         }
       })
     },
-    updateTemp() {
+    updateTemp () {
       this.$refs.temp.validate(valid => {
         if (valid) {
           this.temp.userTypeName = this.userTypeSelects.find(
@@ -376,7 +387,7 @@ export default {
         }
       })
     },
-    deleteTemp(id) {
+    deleteTemp (id) {
       deleteUser(id).then(response => {
         if (response.status === 204) {
           this.$notify({
@@ -390,11 +401,11 @@ export default {
         }
       })
     },
-    search() {
+    search () {
       this.listQuery.page = 1
       this.getList()
     },
-    resetTemp() {
+    resetTemp () {
       this.temp = {
         id: undefined,
         code: '',
@@ -413,31 +424,31 @@ export default {
         status: '正常'
       }
     },
-    handleChange() {
+    handleChange () {
       this.listQuery.page = 1
       this.getList()
     },
-    handleSizeChange(val) {
+    handleSizeChange (val) {
       this.listQuery.per_Page = val
       this.getList()
     },
-    handleCurrentChange(val) {
+    handleCurrentChange (val) {
       this.listQuery.page = val
       this.getList()
     },
-    handleCreate() {
+    handleCreate () {
       this.resetTemp()
       this.tempOrgSelected = this.orgSelected
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
     },
-    handleEdit(row) {
+    handleEdit (row) {
       this.getTemp(row.id)
       this.tempOrgSelected = this.orgSelected
       this.dialogStatus = 'edit'
       this.dialogFormVisible = true
     },
-    handleDelete(row) {
+    handleDelete (row) {
       this.$confirm('确定要删除当前信息？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',

@@ -1,6 +1,6 @@
 import fetch from '@/utils/fetch'
 
-export function getRoles (params) {
+export function getRoles(params) {
   return fetch({
     url: '/Roles',
     method: 'get',
@@ -8,14 +8,14 @@ export function getRoles (params) {
   })
 }
 
-export function getRole (id) {
+export function getRole(id) {
   return fetch({
     url: `/Roles/${id}`,
     method: 'get'
   })
 }
 
-export function createRole (data) {
+export function createRole(data) {
   return fetch({
     url: '/Roles',
     method: 'post',
@@ -23,7 +23,7 @@ export function createRole (data) {
   })
 }
 
-export function updateRole (data) {
+export function updateRole(data) {
   return fetch({
     url: `/Roles/${data.id}`,
     method: 'put',
@@ -31,7 +31,7 @@ export function updateRole (data) {
   })
 }
 
-export function deleteRole (id) {
+export function deleteRole(id) {
   return fetch({
     url: `/Roles/${id}`,
     method: 'delete'
