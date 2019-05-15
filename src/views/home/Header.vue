@@ -2,9 +2,11 @@
   <div class="header">
     <div class="logo">食源性疾病监测</div>
     <div class="user-info">
-      <el-dropdown trigger="click" @command="handleCommand">
+      <el-dropdown trigger="click"
+                   @command="handleCommand">
         <span class="el-dropdown-link">
-          <img class="user-logo" src="../../assets/RedCross.png">
+          <img class="user-logo"
+               src="../../assets/RedCross.png">
           {{userName}}
         </span>
         <el-dropdown-menu slot="dropdown">
@@ -17,13 +19,13 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       name: 'admin'
-    };
+    }
   },
   computed: {
-    userName() {
+    userName () {
       let userName = this.$store.getters.name
       if (userName.lenth === null) {
         userName = this.name
@@ -32,7 +34,7 @@ export default {
     }
   },
   methods: {
-    handleCommand(command) {
+    handleCommand (command) {
       if (command === 'loginout') {
         this.$store.dispatch('LogOut').then(() => {
           location.reload()
@@ -40,7 +42,7 @@ export default {
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -77,4 +79,3 @@ export default {
   border-radius: 50%;
 }
 </style>
-
