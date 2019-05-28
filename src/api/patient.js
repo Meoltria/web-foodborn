@@ -37,3 +37,10 @@ export function deletePatient (id) {
     method: 'delete'
   })
 }
+
+export function getPatientByOutpatientNo (outpatientNo) {
+  return fetch({
+    url: `/Patients/OutpatientNo/${outpatientNo}`,
+    method: 'get'
+  })
+}

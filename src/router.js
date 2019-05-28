@@ -34,6 +34,10 @@ export default new Router({
     {
       path: '/PatientManager',
       component: resolve => require(['./views/patient/Patient.vue'], resolve)
+    },
+    {
+      path: '/PatientDetail',
+      component: resolve => require(['./views/patient/PatientDetail.vue'], resolve)
     }
     ]
   },
