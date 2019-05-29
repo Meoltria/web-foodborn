@@ -307,7 +307,7 @@
       <el-form class="small-space"
                :model="foodInfoTemp"
                :rules="rules"
-               ref="temp"
+               ref="foodInfoTemp"
                label-position="left"
                label-width="120px"
                style="width: 450px; margin-left:50px;">
@@ -925,7 +925,7 @@ export default {
       })
     },
     createFoodInfoTemp () {
-      this.$refs.temp.validate(valid => {
+      this.$refs.foodInfoTemp.validate(valid => {
         if (valid) {
           this.foodInfoTemp.patientId = this.temp.id
           createFoodInfo(this.foodInfoTemp).then(response => {
@@ -986,7 +986,7 @@ export default {
       })
     },
     updateFoodInfoTemp () {
-      this.$refs.temp.validate(valid => {
+      this.$refs.foodInfoTemp.validate(valid => {
         if (valid) {
           updateFoodInfo(this.foodInfoTemp).then(response => {
             if (response.status === 204) {
