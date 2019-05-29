@@ -194,7 +194,7 @@
       <el-row gutter="10">
         <el-col :span="3"><el-checkbox v-model="symptomTemp.limbNumbness">肢体麻木</el-checkbox></el-col>
         <el-col :span="3"><el-checkbox v-model="symptomTemp.peripheralSensoryDisorder">末梢感觉障碍</el-checkbox></el-col>
-        <el-col :span="6"><el-checkbox v-model="symptomTemp.pupilAbnormality">瞳孔异常</el-checkbox>
+        <el-col :span="7"><el-checkbox v-model="symptomTemp.pupilAbnormality">瞳孔异常</el-checkbox>
         <el-select v-model="symptomTemp.pupilStatus" size="mini" clearable placeholder="请选择瞳孔状态" class="content-input">
           <el-option v-for="item in pupilStatusSelects"
                     :key="item.code"
@@ -221,7 +221,197 @@
     </div>
     <el-divider content-position="left">暴露信息(若怀疑进食某种食物后出现以上症状，则添加食品信息，可添加多行)</el-divider>
     <div>
+      <el-row align="bottom">
+        <el-col :span="24" push="2"><el-button type="primary" icon="el-icon-plus" @click="handleCreate">添加</el-button></el-col>
+      </el-row>
     </div>
+    <el-table :data="list"
+              v-loading="listLoading"
+              element-loading-text="正在加载数据..."
+              borde
+              fit
+              highlight-current-row
+              style="width:100%">
+      <el-table-column align="center"
+                       label="食品名称">
+        <template slot-scope="scope">
+          <span>{{scope.row.foodName}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center"
+                       label="食品分类">
+        <template slot-scope="scope">
+          <span>{{scope.row.foodType}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center"
+                       label="加工及包装方式">
+        <template slot-scope="scope">
+          <span>{{scope.row.foodPackaging}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center"
+                       label="食品品牌">
+        <template slot-scope="scope">
+          <span>{{scope.row.foodBrand}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center"
+                       label="生产厂家">
+        <template slot-scope="scope">
+          <span>{{scope.row.manufacturer}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center"
+                       label="进食场所">
+        <template slot-scope="scope">
+          <span>{{scope.row.eatingPlace}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center"
+                       label="购买场所">
+        <template slot-scope="scope">
+          <span>{{scope.row.purchasePlace}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center"
+                       label="进食人数">
+        <template slot-scope="scope">
+          <span>{{scope.row.eatingCounts}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center"
+                       label="进食时间">
+        <template slot-scope="scope">
+          <span>{{scope.row.eatingTime}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center"
+                       label="操作"
+                       width="180px">
+        <template slot-scope="scope">
+          <el-button type="primary"
+                     icon="el-icon-edit"
+                     size="small"
+                     @click="handleEdit(scope.row)">编辑</el-button>
+          <el-button type="danger"
+                     icon="el-icon-delete"
+                     size="small"
+                     @click="handleDelete(scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <el-dialog :title="textMap[dialogStatus]"
+               :visible.sync="dialogFormVisible">
+      <el-form class="small-space"
+               :model="foodInfoTemp"
+               :rules="rules"
+               ref="temp"
+               label-position="left"
+               label-width="120px"
+               style="width: 450px; margin-left:50px;">
+        <el-form-item label="食品名称"
+                      prop="foodName">
+          <el-input v-model="foodInfoTemp.foodName"></el-input>
+        </el-form-item>
+        <el-form-item label="食品分类"
+                      prop="foodType">
+          <el-select v-model="foodInfoTemp.foodType">
+            <el-option v-for="item in foodClassificationSelects"
+                       :key="item.code"
+                       :label="item.name"
+                       :value="item.name"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="加工及包装"
+                      prop="foodPackaging">
+          <el-select v-model="foodInfoTemp.foodPackaging">
+            <el-option v-for="item in foodPackagingSelects"
+                       :key="item.code"
+                       :label="item.name"
+                       :value="item.name"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="食品品牌">
+          <el-input v-model="foodInfoTemp.foodBrand"></el-input>
+        </el-form-item>
+        <el-form-item label="生产厂家">
+          <el-input v-model="foodInfoTemp.manufacturer"></el-input>
+        </el-form-item>
+        <el-form-item label="进食场所"
+                      prop="eatingPlace">
+          <el-select v-model="foodInfoTemp.eatingPlace">
+            <el-option v-for="item in foodPurchasePlaceSelects"
+                       :key="item.code"
+                       :label="item.name"
+                       :value="item.name"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="购买场所"
+                      prop="purchasePlace">
+          <el-select v-model="foodInfoTemp.purchasePlace">
+            <el-option v-for="item in foodPurchasePlaceSelects"
+                       :key="item.code"
+                       :label="item.name"
+                       :value="item.name"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="购买地点境内/外">
+          <el-radio-group v-model="foodInfoTemp.purchaseBorderland">
+            <el-radio label="境内">境内</el-radio>
+            <el-radio label="境外">境外</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="购买地点省市区">
+          <el-input v-model="foodInfoTemp.purchaseProvinceCityDistrict"></el-input>
+        </el-form-item>
+        <el-form-item label="购买详细地址"
+                      prop="purchaseAddress">
+          <el-input v-model="foodInfoTemp.purchaseAddress"></el-input>
+        </el-form-item>
+        <el-form-item label="进食地点境内/外">
+          <el-radio-group v-model="foodInfoTemp.eatingBorderland">
+            <el-radio label="境内">境内</el-radio>
+            <el-radio label="境外">境外</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="进食地点省市区">
+          <el-input v-model="foodInfoTemp.eatingProvinceCityDistrict"></el-input>
+        </el-form-item>
+        <el-form-item label="进食详细地址"
+                      prop="eatingAddress">
+          <el-input v-model="foodInfoTemp.eatingAddress"></el-input>
+        </el-form-item>
+        <el-form-item label="进食人数">
+          <el-input-number v-model="foodInfoTemp.eatingCounts" @change="handleChange" :min="1" ></el-input-number>
+        </el-form-item>
+        <el-form-item label="进食时间"
+                      prop="eatingTime">
+          <el-date-picker
+            v-model="foodInfoTemp.eatingTime"
+            type="datetime"
+            placeholder="选择日期时间"
+            format="yyyy-MM-dd HH:mm:ss"
+            value-format="yyyy-MM-dd HH:mm:ss">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="其他人是否发病">
+          <el-radio v-model="foodInfoTemp.isOtherPeople" label="否">否</el-radio>
+          <el-radio v-model="foodInfoTemp.isOtherPeople" label="是">是</el-radio>
+        </el-form-item>
+      </el-form>
+      <div slot="footer"
+           class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button v-if="dialogStatus=='create'"
+                   type="primary"
+                   @click="createFoodInfoTemp">确 定</el-button>
+        <el-button v-if="dialogStatus=='edit'"
+                   type="primary"
+                   @click="updateFoodInfoTemp">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -243,14 +433,29 @@ import {
   createSymptom,
   updateSymptom
 } from '@/api/symptom'
+import {
+  getFoodInfos,
+  getFoodInfo,
+  createFoodInfo,
+  updateFoodInfo,
+  deleteFoodInfo
+} from '@/api/foodInfo'
 
 export default {
   data () {
     return {
+      list: null,
       stoolTraitSelects: null,
       pupilStatusSelects: null,
+      foodClassificationSelects: null,
+      foodPackagingSelects: null,
+      foodPurchasePlaceSelects: null,
+      listLoading: true,
       listQuery: {
         outPatientNo: undefined
+      },
+      foodInfosQuery: {
+        patientId: undefined
       },
       temp: {
         id: undefined,
@@ -397,14 +602,72 @@ export default {
         skinOther: false,
         skinOtherInfo: '',
         status: '正常'
+      },
+      foodInfoTemp: {
+        id: undefined,
+        patientId: undefined,
+        foodName: '',
+        foodType: '',
+        foodPackaging: '',
+        foodBrand: '',
+        manufacturer: '',
+        eatingPlace: '',
+        purchasePlace: '',
+        eatingBorderland: '',
+        eatingProvinceCityDistrict: '',
+        eatingAddress: '',
+        purchaseBorderland: '',
+        purchaseProvinceCityDistrict: '',
+        purchaseAddress: '',
+        eatingCounts: '',
+        eatingTime: '',
+        isOtherPeople: '',
+        status: '正常'
+      },
+      rules: {
+        foodName: [
+          { required: true, message: '请输入食品名称', trigger: 'blur' }
+        ],
+        foodType: [
+          { required: true, message: '请选择食品分类', trigger: 'select' }
+        ],
+        foodPackaging: [
+          { required: true, message: '请选择加工或包装方式', trigger: 'select' }
+        ],
+        eatingPlace: [
+          { required: true, message: '请选择进食场所', trigger: 'select' }
+        ],
+        purchasePlace: [
+          { required: true, message: '请选择购买场所', trigger: 'select' }
+        ],
+        eatingTime: [{ required: true, message: '请选择进食时间', trigger: 'change' }],
+        eatingAddress: [{ required: true, message: '请输入进食地址', trigger: 'blur' }],
+        purchaseAddress: [{ required: true, message: '请输入购买地址', trigger: 'blur' }]
+      },
+      dialogFormVisible: false,
+      dialogStatus: '',
+      textMap: {
+        create: '添加食品暴露信息',
+        edit: '编辑食品暴露信息'
       }
     }
   },
   created () {
     this.getStoolTraitSelects()
     this.getPupilStatusSelects()
+    this.getFoodClassificationSelects()
+    this.getFoodPackagingSelects()
+    this.getFoodPurchasePlaceSelects()
+    this.listLoading = false
   },
   methods: {
+    getList () {
+      this.listLoading = true
+      getFoodInfos(this.foodInfosQuery).then(response => {
+        this.list = response.data
+        this.listLoading = false
+      })
+    },
     getTemp () {
       getPatientByOutpatientNo(this.listQuery.outPatientNo).then(response => {
         this.temp = {
@@ -439,6 +702,8 @@ export default {
         this.getInitialDiagnosesTemp(response.data.id)
         this.getPastMedicalHistoryTemp(response.data.id)
         this.getSymptomTemp(response.data.id)
+        this.foodInfosQuery.patientId = response.data.id
+        this.getList()
       })
     },
     getInitialDiagnosesTemp (patientId) {
@@ -570,6 +835,31 @@ export default {
         }
       })
     },
+    getFoodInfoTemp (id) {
+      getFoodInfo(id).then(response => {
+        this.foodInfoTemp = {
+          id: response.data.id,
+          patientId: response.data.patientId,
+          foodName: response.data.foodName,
+          foodType: response.data.foodType,
+          foodPackaging: response.data.foodPackaging,
+          foodBrand: response.data.foodBrand,
+          manufacturer: response.data.manufacturer,
+          eatingPlace: response.data.eatingPlace,
+          purchasePlace: response.data.purchasePlace,
+          eatingBorderland: response.data.eatingBorderland,
+          eatingProvinceCityDistrict: response.data.eatingProvinceCityDistrict,
+          eatingAddress: response.data.eatingAddress,
+          purchaseBorderland: response.data.purchaseBorderland,
+          purchaseProvinceCityDistrict: response.data.purchaseProvinceCityDistrict,
+          purchaseAddress: response.data.purchaseAddress,
+          eatingCounts: response.data.eatingCounts,
+          eatingTime: response.data.eatingTime,
+          isOtherPeople: response.data.isOtherPeople,
+          status: response.data.status
+        }
+      })
+    },
     getStoolTraitSelects () {
       getDictonarySelect('StoolTrait').then(response => {
         this.stoolTraitSelects = response.data
@@ -578,6 +868,21 @@ export default {
     getPupilStatusSelects () {
       getDictonarySelect('PupilStatus').then(response => {
         this.pupilStatusSelects = response.data
+      })
+    },
+    getFoodClassificationSelects () {
+      getDictonarySelect('FoodClassification').then(response => {
+        this.foodClassificationSelects = response.data
+      })
+    },
+    getFoodPackagingSelects () {
+      getDictonarySelect('FoodPackaging').then(response => {
+        this.foodPackagingSelects = response.data
+      })
+    },
+    getFoodPurchasePlaceSelects () {
+      getDictonarySelect('FoodPurchasePlace').then(response => {
+        this.foodPurchasePlaceSelects = response.data
       })
     },
     createInitialDiagnosesTemp () {
@@ -619,6 +924,28 @@ export default {
         }
       })
     },
+    createFoodInfoTemp () {
+      this.$refs.temp.validate(valid => {
+        if (valid) {
+          this.foodInfoTemp.patientId = this.temp.id
+          createFoodInfo(this.foodInfoTemp).then(response => {
+            if (response.status === 201) {
+              this.dialogFormVisible = false
+              this.$notify({
+                title: '成功',
+                message: '创建成功',
+                type: 'success',
+                duration: 3000
+              })
+              this.foodInfosQuery.patientId = this.temp.id
+              this.getList()
+            }
+          })
+        } else {
+          return false
+        }
+      })
+    },
     updateInitialDiagnosesTemp () {
       updateInitialDiagnosis(this.initialDiagnosesTemp).then(response => {
         if (response.status === 204) {
@@ -655,6 +982,27 @@ export default {
             duration: 3000
           })
           this.getSymptomTemp(this.temp.id)
+        }
+      })
+    },
+    updateFoodInfoTemp () {
+      this.$refs.temp.validate(valid => {
+        if (valid) {
+          updateFoodInfo(this.foodInfoTemp).then(response => {
+            if (response.status === 204) {
+              this.dialogFormVisible = false
+              this.$notify({
+                title: '成功',
+                message: '修改成功',
+                type: 'success',
+                duration: 3000
+              })
+              this.foodInfosQuery.patientId = this.temp.id
+              this.getList()
+            }
+          })
+        } else {
+          return false
         }
       })
     },
@@ -703,11 +1051,27 @@ export default {
         }
       }
     },
+    deleteFoodInfoTemp (id) {
+      deleteFoodInfo(id).then(response => {
+        if (response.status === 204) {
+          this.$notify({
+            title: '成功',
+            message: '删除成功',
+            type: 'success',
+            duration: 3000
+          })
+          this.foodInfosQuery.patientId = this.temp.id
+          this.getList()
+        }
+      })
+    },
     search () {
       this.resetTemp()
       this.resetInitialDiagnosesTemp()
       this.resetPastMedicalHistoryTemp()
       this.resetSymptomTemp()
+      this.list = null
+      this.foodInfosQuery.patientId = undefined
       this.getTemp()
     },
     resetTemp () {
@@ -863,6 +1227,62 @@ export default {
         skinOtherInfo: '',
         status: '正常'
       }
+    },
+    resetFoodInfoTemp () {
+      this.foodInfoTemp = {
+        id: undefined,
+        patientId: undefined,
+        foodName: '',
+        foodType: '',
+        foodPackaging: '',
+        foodBrand: '',
+        manufacturer: '',
+        eatingPlace: '',
+        purchasePlace: '',
+        eatingBorderland: '境内',
+        eatingProvinceCityDistrict: '山东省济宁市鱼台县',
+        eatingAddress: '',
+        purchaseBorderland: '境内',
+        purchaseProvinceCityDistrict: '山东省济宁市鱼台县',
+        purchaseAddress: '',
+        eatingCounts: '1',
+        eatingTime: '',
+        isOtherPeople: '否',
+        status: '正常'
+      }
+    },
+    handleCreate () {
+      if (this.temp.id === undefined) {
+        this.$message({
+          message: '请先查询患者信息',
+          type: 'warning'
+        })
+      } else {
+        this.resetFoodInfoTemp()
+        this.dialogStatus = 'create'
+        this.dialogFormVisible = true
+      }
+    },
+    handleEdit (row) {
+      this.getFoodInfoTemp(row.id)
+      this.dialogStatus = 'edit'
+      this.dialogFormVisible = true
+    },
+    handleDelete (row) {
+      this.$confirm('确定要删除当前信息？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          this.deleteFoodInfoTemp(row.id)
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除!'
+          })
+        })
     }
   }
 }
