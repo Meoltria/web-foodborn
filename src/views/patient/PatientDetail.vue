@@ -91,6 +91,133 @@
     </div>
     <el-divider content-position="left">症状体征</el-divider>
     <div>
+      <el-divider content-position="center">全身症状与体征</el-divider>
+      <el-row gutter="10">
+        <el-col :span="6"><el-checkbox v-model="symptomTemp.fever">发热</el-checkbox>
+        <el-input v-model="symptomTemp.feverDegree" size="mini" placeholder="发热度数(℃)" class="content-input"></el-input></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.facialFlush">面色潮红</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.pale">面色苍白</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.hairpin">发绀</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.dehydration">脱水</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.thirsty">口渴</el-checkbox></el-col>
+      </el-row>
+      <el-row gutter="10">
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.puffiness">浮肿</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.weightLoss">体重下降</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.chill">寒战</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.weak">乏力</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.anemia">贫血</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.swollen">肿胀</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.insomnia">失眠</el-checkbox></el-col>
+      </el-row>
+      <el-row gutter="10">
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.photophobia">畏光</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.mouthly">口有糊味</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.metallic">金属味</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.soapSalty">肥皂/咸味</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.excessiveSaliva">唾液过多</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.footWristPendant">足/腕下垂</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.pigmentation">色素沉着</el-checkbox></el-col>
+      </el-row>
+      <el-row gutter="10">
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.peeling">脱皮</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.nailBand">指甲出现白带</el-checkbox></el-col>
+        <el-col :span="6"><el-checkbox v-model="symptomTemp.signsOther">其他</el-checkbox>
+        <el-input v-model="symptomTemp.signsOtherInfo" size="mini" placeholder="其他信息" class="content-input"></el-input></el-col>
+      </el-row>
+      <el-divider content-position="center">消化系统</el-divider>
+      <el-row gutter="10">
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.disgusting">恶心</el-checkbox></el-col>
+        <el-col :span="6"><el-checkbox v-model="symptomTemp.vomiting">呕吐</el-checkbox>
+        <el-input v-model="symptomTemp.vomitingCount" size="mini" placeholder="呕吐次数(次/天)" class="content-input"></el-input></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.stomachAche">腹痛</el-checkbox></el-col>
+        <el-col :span="9"><el-checkbox v-model="symptomTemp.diarrhea">腹泻</el-checkbox>
+        <el-input v-model="symptomTemp.diarrheaCount" size="mini" placeholder="腹泻次数(次/天)" class="content-input"></el-input>
+        <el-select v-model="symptomTemp.diarrheaTraits" size="mini" clearable placeholder="请选择大便性状" class="content-input">
+          <el-option v-for="item in stoolTraitSelects"
+                    :key="item.code"
+                    :label="item.name"
+                    :value="item.name"></el-option>
+        </el-select></el-col>
+      </el-row>
+      <el-row gutter="10">
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.constipation">便秘</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.heavyAndHeavy">里急后重</el-checkbox></el-col>
+        <el-col :span="6"><el-checkbox v-model="symptomTemp.digestiveOther">其他</el-checkbox>
+        <el-input v-model="symptomTemp.digestiveOtherInfo" size="mini" placeholder="其他信息" class="content-input"></el-input></el-col>
+      </el-row>
+      <el-divider content-position="center">呼吸系统</el-divider>
+      <el-row gutter="10">
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.shortnessOfBreath">呼吸短促</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.hemoptysis">咯血</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.difficultyBreathing">呼吸困难</el-checkbox></el-col>
+        <el-col :span="6"><el-checkbox v-model="symptomTemp.respiratoryOther">其他</el-checkbox>
+        <el-input v-model="symptomTemp.respiratoryOtherInfo" size="mini" placeholder="其他信息" class="content-input"></el-input></el-col>
+      </el-row>
+      <el-divider content-position="center">心脑血管系统</el-divider>
+      <el-row gutter="10">
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.chestTightness">胸闷</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.chestPain">胸痛</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.palpitations">心悸</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.breathHard">气短</el-checkbox></el-col>
+        <el-col :span="6"><el-checkbox v-model="symptomTemp.cardiovascularOther">其他</el-checkbox>
+        <el-input v-model="symptomTemp.cardiovascularOtherInfo" size="mini" placeholder="其他信息" class="content-input"></el-input></el-col>
+      </el-row>
+      <el-divider content-position="center">泌尿系统</el-divider>
+      <el-row gutter="10">
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.reducedUrineOutput">尿量减少</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.backKidneyPain">背部肾区疼痛</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.bloodInTheUrine">尿中带血</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.kidneyStones">肾结石</el-checkbox></el-col>
+        <el-col :span="6"><el-checkbox v-model="symptomTemp.urinaryOther">其他</el-checkbox>
+        <el-input v-model="symptomTemp.urinaryOtherInfo" size="mini" placeholder="其他信息" class="content-input"></el-input></el-col>
+      </el-row>
+      <el-divider content-position="center">神经系统</el-divider>
+      <el-row gutter="10">
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.headache">头痛</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.dizziness">眩晕</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.coma">昏迷</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.convulsion">抽搐</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.horror">惊厥</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.delirium">谵妄</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.paralysis">瘫痪</el-checkbox></el-col>
+      </el-row>
+      <el-row gutter="10">
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.difficultiesInSpeech">言语困难</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.hardToSwallow">吞咽困难</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.feelingAbnormal">感觉异常</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.mentalDisorder">精神失常</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.diplopia">复视</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.blurredVision">视力模糊</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.eyelidDrooping">眼睑下垂</el-checkbox></el-col>
+      </el-row>
+      <el-row gutter="10">
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.limbNumbness">肢体麻木</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.peripheralSensoryDisorder">末梢感觉障碍</el-checkbox></el-col>
+        <el-col :span="6"><el-checkbox v-model="symptomTemp.pupilAbnormality">瞳孔异常</el-checkbox>
+        <el-select v-model="symptomTemp.pupilStatus" size="mini" clearable placeholder="请选择瞳孔状态" class="content-input">
+          <el-option v-for="item in pupilStatusSelects"
+                    :key="item.code"
+                    :label="item.name"
+                    :value="item.name"></el-option>
+        </el-select></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.acupuncture">针刺感</el-checkbox></el-col>
+        <el-col :span="6"><el-checkbox v-model="symptomTemp.nerveother">其他</el-checkbox>
+        <el-input v-model="symptomTemp.nerveOtherInfo" size="mini" placeholder="其他信息" class="content-input"></el-input></el-col>
+      </el-row>
+      <el-divider content-position="center">皮肤和皮下组织</el-divider>
+      <el-row gutter="10">
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.itching">瘙痒</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.burningSensation">烧灼感</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.rash">皮疹</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.bleedingPoint">出血点</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.jaundice">黄疸</el-checkbox></el-col>
+        <el-col :span="6"><el-checkbox v-model="symptomTemp.skinOther">其他</el-checkbox>
+        <el-input v-model="symptomTemp.skinOtherInfo" size="mini" placeholder="其他信息" class="content-input"></el-input></el-col>
+      </el-row>
+      <el-row align="bottom">
+        <el-col :span="24" push="10"><el-button type="primary"  @click="saveSymptom">保存</el-button></el-col>
+      </el-row>
     </div>
     <el-divider content-position="left">暴露信息(若怀疑进食某种食物后出现以上症状，则添加食品信息，可添加多行)</el-divider>
     <div>
@@ -99,6 +226,7 @@
 </template>
 
 <script>
+import { getDictonarySelect } from '@/api/dictionary'
 import { getPatientByOutpatientNo } from '@/api/patient'
 import {
   getInitialDiagnosisByPatientId,
@@ -110,10 +238,17 @@ import {
   createPastMedicalHistory,
   updatePastMedicalHistory
 } from '@/api/pastMedicalHistory'
+import {
+  getSymptomByPatientId,
+  createSymptom,
+  updateSymptom
+} from '@/api/symptom'
 
 export default {
   data () {
     return {
+      stoolTraitSelects: null,
+      pupilStatusSelects: null,
       listQuery: {
         outPatientNo: undefined
       },
@@ -176,11 +311,98 @@ export default {
         other: false,
         otherInfo: '',
         status: '正常'
+      },
+      symptomTemp: {
+        id: undefined,
+        patientId: undefined,
+        fever: false,
+        feverDegree: '',
+        facialFlush: false,
+        pale: false,
+        hairpin: false,
+        dehydration: false,
+        thirsty: false,
+        puffiness: false,
+        weightLoss: false,
+        chill: false,
+        weak: false,
+        anemia: false,
+        swollen: false,
+        insomnia: false,
+        photophobia: false,
+        mouthly: false,
+        metallic: false,
+        soapSalty: false,
+        excessiveSaliva: false,
+        footWristPendant: false,
+        pigmentation: false,
+        peeling: false,
+        nailBand: false,
+        signsOther: false,
+        signsOtherInfo: '',
+        disgusting: false,
+        vomiting: false,
+        vomitingCount: '',
+        stomachAche: false,
+        diarrhea: false,
+        diarrheaTraits: '',
+        diarrheaCount: '',
+        constipation: false,
+        heavyAndHeavy: false,
+        digestiveOther: false,
+        digestiveOtherInfo: '',
+        shortnessOfBreath: false,
+        hemoptysis: false,
+        difficultyBreathing: false,
+        respiratoryOther: false,
+        respiratoryOtherInfo: '',
+        chestTightness: false,
+        chestPain: false,
+        palpitations: false,
+        breathHard: false,
+        cardiovascularOther: false,
+        cardiovascularOtherInfo: '',
+        reducedUrineOutput: false,
+        backKidneyPain: false,
+        bloodInTheUrine: false,
+        kidneyStones: false,
+        urinaryOther: false,
+        urinaryOtherInfo: '',
+        headache: false,
+        dizziness: false,
+        coma: false,
+        convulsion: false,
+        horror: false,
+        delirium: false,
+        paralysis: false,
+        difficultiesInSpeech: false,
+        hardToSwallow: false,
+        feelingAbnormal: false,
+        mentalDisorder: false,
+        diplopia: false,
+        blurredVision: false,
+        eyelidDrooping: false,
+        limbNumbness: false,
+        peripheralSensoryDisorder: false,
+        pupilAbnormality: false,
+        pupilStatus: '',
+        acupuncture: false,
+        nerveother: false,
+        nerveOtherInfo: '',
+        itching: false,
+        burningSensation: false,
+        rash: false,
+        bleedingPoint: false,
+        jaundice: false,
+        skinOther: false,
+        skinOtherInfo: '',
+        status: '正常'
       }
     }
   },
   created () {
-
+    this.getStoolTraitSelects()
+    this.getPupilStatusSelects()
   },
   methods: {
     getTemp () {
@@ -216,6 +438,7 @@ export default {
         }
         this.getInitialDiagnosesTemp(response.data.id)
         this.getPastMedicalHistoryTemp(response.data.id)
+        this.getSymptomTemp(response.data.id)
       })
     },
     getInitialDiagnosesTemp (patientId) {
@@ -257,6 +480,106 @@ export default {
         }
       })
     },
+    getSymptomTemp (patientId) {
+      getSymptomByPatientId(patientId).then(response => {
+        this.symptomTemp = {
+          id: response.data.id,
+          patientId: response.data.patientId,
+          fever: response.data.fever,
+          feverDegree: response.data.feverDegree,
+          facialFlush: response.data.facialFlush,
+          pale: response.data.pale,
+          hairpin: response.data.hairpin,
+          dehydration: response.data.dehydration,
+          thirsty: response.data.dehydration,
+          puffiness: response.data.puffiness,
+          weightLoss: response.data.weightLoss,
+          chill: response.data.chill,
+          weak: response.data.weak,
+          anemia: response.data.anemia,
+          swollen: response.data.swollen,
+          insomnia: response.data.insomnia,
+          photophobia: response.data.photophobia,
+          mouthly: response.data.mouthly,
+          metallic: response.data.metallic,
+          soapSalty: response.data.soapSalty,
+          excessiveSaliva: response.data.excessiveSaliva,
+          footWristPendant: response.data.footWristPendant,
+          pigmentation: response.data.pigmentation,
+          peeling: response.data.peeling,
+          nailBand: response.data.nailBand,
+          signsOther: response.data.signsOther,
+          signsOtherInfo: response.data.signsOtherInfo,
+          disgusting: response.data.disgusting,
+          vomiting: response.data.vomiting,
+          vomitingCount: response.data.vomitingCount,
+          stomachAche: response.data.stomachAche,
+          diarrhea: response.data.diarrhea,
+          diarrheaTraits: response.data.diarrheaTraits,
+          diarrheaCount: response.data.diarrheaCount,
+          constipation: response.data.constipation,
+          heavyAndHeavy: response.data.heavyAndHeavy,
+          digestiveOther: response.data.digestiveOther,
+          digestiveOtherInfo: response.data.digestiveOtherInfo,
+          shortnessOfBreath: response.data.shortnessOfBreath,
+          hemoptysis: response.data.hemoptysis,
+          difficultyBreathing: response.data.difficultyBreathing,
+          respiratoryOther: response.data.respiratoryOther,
+          respiratoryOtherInfo: response.data.respiratoryOtherInfo,
+          chestTightness: response.data.chestTightness,
+          chestPain: response.data.chestPain,
+          palpitations: response.data.palpitations,
+          breathHard: response.data.breathHard,
+          cardiovascularOther: response.data.cardiovascularOther,
+          cardiovascularOtherInfo: response.data.cardiovascularOtherInfo,
+          reducedUrineOutput: response.data.reducedUrineOutput,
+          backKidneyPain: response.data.backKidneyPain,
+          bloodInTheUrine: response.data.bloodInTheUrine,
+          kidneyStones: response.data.kidneyStones,
+          urinaryOther: response.data.urinaryOther,
+          urinaryOtherInfo: response.data.urinaryOtherInfo,
+          headache: response.data.headache,
+          dizziness: response.data.dizziness,
+          coma: response.data.coma,
+          convulsion: response.data.convulsion,
+          horror: response.data.horror,
+          delirium: response.data.delirium,
+          paralysis: response.data.paralysis,
+          difficultiesInSpeech: response.data.difficultiesInSpeech,
+          hardToSwallow: response.data.hardToSwallow,
+          feelingAbnormal: response.data.feelingAbnormal,
+          mentalDisorder: response.data.mentalDisorder,
+          diplopia: response.data.diplopia,
+          blurredVision: response.data.blurredVision,
+          eyelidDrooping: response.data.eyelidDrooping,
+          limbNumbness: response.data.limbNumbness,
+          peripheralSensoryDisorder: response.data.peripheralSensoryDisorder,
+          pupilAbnormality: response.data.pupilAbnormality,
+          pupilStatus: response.data.pupilAbnormality,
+          acupuncture: response.data.acupuncture,
+          nerveother: response.data.nerveother,
+          nerveOtherInfo: response.data.nerveOtherInfo,
+          itching: response.data.itching,
+          burningSensation: response.data.burningSensation,
+          rash: response.data.rash,
+          bleedingPoint: response.data.bleedingPoint,
+          jaundice: response.data.jaundice,
+          skinOther: response.data.skinOther,
+          skinOtherInfo: response.data.skinOtherInfo,
+          status: response.data.status
+        }
+      })
+    },
+    getStoolTraitSelects () {
+      getDictonarySelect('StoolTrait').then(response => {
+        this.stoolTraitSelects = response.data
+      })
+    },
+    getPupilStatusSelects () {
+      getDictonarySelect('PupilStatus').then(response => {
+        this.pupilStatusSelects = response.data
+      })
+    },
     createInitialDiagnosesTemp () {
       createInitialDiagnosis(this.initialDiagnosesTemp).then(response => {
         if (response.status === 201) {
@@ -283,6 +606,19 @@ export default {
         }
       })
     },
+    createSymptomTemp () {
+      createSymptom(this.symptomTemp).then(response => {
+        if (response.status === 201) {
+          this.$notify({
+            title: '成功',
+            message: '保存症状体征成功',
+            type: 'success',
+            duration: 3000
+          })
+          this.getSymptomTemp(this.temp.id)
+        }
+      })
+    },
     updateInitialDiagnosesTemp () {
       updateInitialDiagnosis(this.initialDiagnosesTemp).then(response => {
         if (response.status === 204) {
@@ -306,6 +642,19 @@ export default {
             duration: 3000
           })
           this.getPastMedicalHistoryTemp(this.temp.id)
+        }
+      })
+    },
+    updateSymptomTemp () {
+      updateSymptom(this.symptomTemp).then(response => {
+        if (response.status === 204) {
+          this.$notify({
+            title: '成功',
+            message: '保存症状体征成功',
+            type: 'success',
+            duration: 3000
+          })
+          this.getSymptomTemp(this.temp.id)
         }
       })
     },
@@ -339,10 +688,26 @@ export default {
         }
       }
     },
+    saveSymptom () {
+      if (this.temp.id === undefined) {
+        this.$message({
+          message: '请先查询患者信息',
+          type: 'warning'
+        })
+      } else {
+        if (this.symptomTemp.id === undefined) {
+          this.symptomTemp.patientId = this.temp.id
+          this.createSymptomTemp()
+        } else {
+          this.updateSymptomTemp()
+        }
+      }
+    },
     search () {
       this.resetTemp()
       this.resetInitialDiagnosesTemp()
       this.resetPastMedicalHistoryTemp()
+      this.resetSymptomTemp()
       this.getTemp()
     },
     resetTemp () {
@@ -408,6 +773,94 @@ export default {
         brainTumor: false,
         other: false,
         otherInfo: '',
+        status: '正常'
+      }
+    },
+    resetSymptomTemp () {
+      this.symptomTemp = {
+        id: undefined,
+        patientId: undefined,
+        fever: false,
+        feverDegree: '',
+        facialFlush: false,
+        pale: false,
+        hairpin: false,
+        dehydration: false,
+        thirsty: false,
+        puffiness: false,
+        weightLoss: false,
+        chill: false,
+        weak: false,
+        anemia: false,
+        swollen: false,
+        insomnia: false,
+        photophobia: false,
+        mouthly: false,
+        metallic: false,
+        soapSalty: false,
+        excessiveSaliva: false,
+        footWristPendant: false,
+        pigmentation: false,
+        peeling: false,
+        nailBand: false,
+        signsOther: false,
+        signsOtherInfo: '',
+        disgusting: false,
+        vomiting: false,
+        vomitingCount: '',
+        stomachAche: false,
+        diarrhea: false,
+        diarrheaTraits: '',
+        diarrheaCount: '',
+        constipation: false,
+        heavyAndHeavy: false,
+        digestiveOther: false,
+        digestiveOtherInfo: '',
+        shortnessOfBreath: false,
+        hemoptysis: false,
+        difficultyBreathing: false,
+        respiratoryOther: false,
+        respiratoryOtherInfo: '',
+        chestTightness: false,
+        chestPain: false,
+        palpitations: false,
+        breathHard: false,
+        cardiovascularOther: false,
+        cardiovascularOtherInfo: '',
+        reducedUrineOutput: false,
+        backKidneyPain: false,
+        bloodInTheUrine: false,
+        kidneyStones: false,
+        urinaryOther: false,
+        urinaryOtherInfo: '',
+        headache: false,
+        dizziness: false,
+        coma: false,
+        convulsion: false,
+        horror: false,
+        delirium: false,
+        paralysis: false,
+        difficultiesInSpeech: false,
+        hardToSwallow: false,
+        feelingAbnormal: false,
+        mentalDisorder: false,
+        diplopia: false,
+        blurredVision: false,
+        eyelidDrooping: false,
+        limbNumbness: false,
+        peripheralSensoryDisorder: false,
+        pupilAbnormality: false,
+        pupilStatus: '',
+        acupuncture: false,
+        nerveother: false,
+        nerveOtherInfo: '',
+        itching: false,
+        burningSensation: false,
+        rash: false,
+        bleedingPoint: false,
+        jaundice: false,
+        skinOther: false,
+        skinOtherInfo: '',
         status: '正常'
       }
     }
