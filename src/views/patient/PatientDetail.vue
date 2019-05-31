@@ -820,7 +820,7 @@ export default {
           limbNumbness: response.data.limbNumbness,
           peripheralSensoryDisorder: response.data.peripheralSensoryDisorder,
           pupilAbnormality: response.data.pupilAbnormality,
-          pupilStatus: response.data.pupilAbnormality,
+          pupilStatus: response.data.pupilStatus,
           acupuncture: response.data.acupuncture,
           nerveother: response.data.nerveother,
           nerveOtherInfo: response.data.nerveOtherInfo,
