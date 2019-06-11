@@ -196,6 +196,10 @@
         <el-form-item label="身份证号">
           <el-input v-model="temp.idCard"></el-input>
         </el-form-item>
+        <el-form-item label="联系电话"
+                      prop="phone">
+          <el-input v-model="temp.phone"></el-input>
+        </el-form-item>
         <el-form-item label="省市区"
                       prop="provinceCityDistrict">
           <el-input v-model="temp.provinceCityDistrict"></el-input>
@@ -288,6 +292,7 @@ export default {
         professionName: '',
         birthday: '',
         idCard: '',
+        phone: '',
         provinceCityDistrict: '',
         address: '',
         guardianName: '',
@@ -320,6 +325,7 @@ export default {
         professionCode: [
           { required: true, message: '请选择患者职业', trigger: 'select' }
         ],
+        phone: [{ required: true, message: '请输入联系电话', trigger: 'blur' }],
         provinceCityDistrict: [{ required: true, message: '请输入省市区', trigger: 'blur' }],
         address: [{ required: true, message: '请输入详细地址', trigger: 'blur' }],
         receivingDoctor: [{ required: true, message: '请输入接诊医生', trigger: 'blur' }],
@@ -374,6 +380,7 @@ export default {
           professionName: response.data.professionName,
           birthday: response.data.birthday,
           idCard: response.data.idCard,
+          phone: response.data.phone,
           provinceCityDistrict: response.data.provinceCityDistrict,
           address: response.data.address,
           guardianName: response.data.guardianName,
@@ -498,6 +505,7 @@ export default {
         professionName: '',
         birthday: '',
         idCard: '',
+        phone: '',
         provinceCityDistrict: '山东省济宁市鱼台县',
         address: '',
         guardianName: '',
