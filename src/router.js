@@ -38,6 +38,10 @@ export default new Router({
     {
       path: '/PatientDetail',
       component: resolve => require(['./views/patient/PatientDetail.vue'], resolve)
+    },
+    {
+      path: '/UploadMedicalRecord',
+      component: resolve => require(['./views/patient/UploadMedicalRecord.vue'], resolve)
     }
     ]
   },

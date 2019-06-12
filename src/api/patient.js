@@ -44,3 +44,11 @@ export function getPatientByOutpatientNo (outpatientNo) {
     method: 'get'
   })
 }
+
+export function uploadMedicalRecord (data) {
+  return fetch({
+    url: '/Patients/UploadMedicalRecord',
+    method: 'post',
+    data
+  })
+}
