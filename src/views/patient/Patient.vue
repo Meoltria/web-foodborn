@@ -184,7 +184,8 @@
                        :value="item.code"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="出生日期">
+        <el-form-item label="出生日期"
+                      prop="birthday">
           <el-date-picker
             v-model="temp.birthday"
             type="date"
@@ -310,6 +311,7 @@ export default {
         ],
         illnessTime: [{ required: true, message: '请选择发病时间', trigger: 'change' }],
         treatmentTime: [{ required: true, message: '请选择就诊时间', trigger: 'change' }],
+        birthday: [{ required: true, message: '请选择出生日期', trigger: 'change' }],
         isAntibioticCode: [
           { required: true, message: '请选择珍前是否使用抗生素', trigger: 'select' }
         ],
