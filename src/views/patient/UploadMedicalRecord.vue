@@ -71,10 +71,11 @@
           <el-button type="primary"
                      icon="el-icon-upload"
                      size="small"
-                     @click="handleUpload(scope.row)">上报</el-button>
+                     @click="handleUpload(scope.row)">上传</el-button>
           <el-button type="danger"
                      icon="el-icon-delete"
                      size="small"
+                     v-if="scope.row.status=='已上传'"
                      @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
