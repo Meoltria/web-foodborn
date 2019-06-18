@@ -44,3 +44,11 @@ export function deleteUser (id) {
     method: 'delete'
   })
 }
+
+export function updatePassWord (data) {
+  return fetch({
+    url: `/Users/PassWord`,
+    method: 'put',
+    data
+  })
+}
