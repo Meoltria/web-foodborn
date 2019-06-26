@@ -131,7 +131,7 @@
             value-format="yyyy-MM-dd HH:mm:ss">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="珍前使用抗生素"
+        <el-form-item label="诊前使用抗生素"
                       prop="isAntibioticCode">
           <el-select v-model="temp.isAntibioticCode">
             <el-option v-for="item in isAntibioticSelects"
@@ -142,7 +142,7 @@
         </el-form-item>
         <el-form-item label="抗生素名称"
                       prop="antibioticName">
-          <el-input v-model="temp.antibioticName"></el-input>
+          <el-input v-model="temp.antibioticName" :disabled="temp.isAntibioticCode=='0'"></el-input>
         </el-form-item>
         <el-form-item label="是否复诊"
                       prop="isReviewCode">
@@ -164,7 +164,7 @@
         </el-form-item>
         <el-form-item label="住院号"
                       prop="inpatientNo">
-          <el-input v-model="temp.inpatientNo"></el-input>
+          <el-input v-model="temp.inpatientNo" :disabled="temp.isHospitalizationCode=='0'"></el-input>
         </el-form-item>
         <el-form-item label="性  别"
                       prop="genderCode">
@@ -527,6 +527,7 @@ export default {
     },
     handleCreate () {
       this.resetTemp()
+      this.temp.fillTime = new Date()
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
     },
