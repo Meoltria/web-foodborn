@@ -8,6 +8,14 @@ export function getPatients (params) {
   })
 }
 
+export function getUploadPatients (params) {
+  return fetch({
+    url: '/Patients/PendingUpload',
+    method: 'get',
+    params
+  })
+}
+
 export function getPatient (id) {
   return fetch({
     url: `/Patients/${id}`,

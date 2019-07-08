@@ -96,7 +96,7 @@
 
 <script>
 import {
-  getPatients,
+  getUploadPatients,
   uploadMedicalRecord
 } from '@/api/patient'
 
@@ -124,7 +124,7 @@ export default {
   methods: {
     getList () {
       this.listLoading = true
-      getPatients(this.listQuery).then(response => {
+      getUploadPatients(this.listQuery).then(response => {
         this.list = response.data
         this.total = parseInt(response.headers['x-totalcount'])
         this.listLoading = false
