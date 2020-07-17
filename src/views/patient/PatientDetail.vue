@@ -44,7 +44,7 @@
         <el-col :span="6">接诊医生：<span v-text="temp.receivingDoctor"></span></el-col>
       </el-row>
     </div>
-    <el-divider content-position="left">初步诊断</el-divider>
+    <el-divider content-position="left">诊断结论</el-divider>
     <div>
       <el-row gutter="10">
         <el-col :span="3"><el-checkbox v-model="initialDiagnosesTemp.acuteGastroenteritis">急性胃肠炎</el-checkbox></el-col>
@@ -188,11 +188,11 @@
         <el-col :span="3"><el-checkbox v-model="symptomTemp.feelingAbnormal">感觉异常</el-checkbox></el-col>
         <el-col :span="3"><el-checkbox v-model="symptomTemp.mentalDisorder">精神失常</el-checkbox></el-col>
         <el-col :span="3"><el-checkbox v-model="symptomTemp.diplopia">复视</el-checkbox></el-col>
-        <el-col :span="3"><el-checkbox v-model="symptomTemp.blurredVision">视力模糊</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.blurredVision">视物模糊</el-checkbox></el-col>
         <el-col :span="3"><el-checkbox v-model="symptomTemp.eyelidDrooping">眼睑下垂</el-checkbox></el-col>
       </el-row>
       <el-row gutter="10">
-        <el-col :span="3"><el-checkbox v-model="symptomTemp.limbNumbness">肢体麻木</el-checkbox></el-col>
+        <el-col :span="3"><el-checkbox v-model="symptomTemp.limbNumbness">麻木</el-checkbox></el-col>
         <el-col :span="3"><el-checkbox v-model="symptomTemp.peripheralSensoryDisorder">末梢感觉障碍</el-checkbox></el-col>
         <el-col :span="7"><el-checkbox v-model="symptomTemp.pupilAbnormality">瞳孔异常</el-checkbox>
         <el-select v-model="symptomTemp.pupilStatus" size="mini" clearable placeholder="请选择瞳孔状态" class="content-input">
